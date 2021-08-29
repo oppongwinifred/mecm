@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<table class="table table-bordered border-primary">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Money</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for recod in daily_money_record%}
+    <tr>
+      <td>{{recod.when_made}}</td>
+      <td>{{recod.sum}}</td>
+    </tr>
+    <tr>
+    {%endfor%}
+{%endblock content%}

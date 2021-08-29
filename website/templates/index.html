@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block content%}
+{%for student in student_created%}
+    <div>
+    {%if student.troll == True and student.soap == True and student.completed_paying_books == True%}
+        <p><a href="{%url 'student_payment' student.id%}"><button type="button" class="btn btn-outline-primary">{{student.full_name}} <i class="bi bi-check-lg"></i></button></a></p>
+    {%else%}
+        <p><a href="{%url 'student_payment' student.id%}"><button type="button" class="btn btn-outline-primary">{{student.full_name}}</button></a></p>
+    {%endif%}    
+        <a href="{%url 'updating_student' student.id%}"><button type="button" class="btn btn-primary">Change Info</button></a>
+        <a href="{%url 'deleting_student' student.id%}"><button type="button" class="btn btn-primary">Remove Student</button></a>
+        <hr>           
+    </div>
+{%endfor%}
+
+{%endblock content%}

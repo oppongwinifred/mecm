@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<table class="table table-bordered border-primary">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Names</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for histo in histowy%}
+    <tr>
+      <td>{{histo.student}}</td>
+      <td>{{histo.make_payment}}</td>
+      <td>{{histo.when_made}}</td>
+    </tr>
+    <tr>
+    {%endfor%}
+{%endblock content%}

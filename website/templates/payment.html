@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{%block content%}
+{%if student.completed_paying_books == True %}
+{%elif student.how_many_books_to_buy == 'four'%}
+
+  <h2>Needs to buy "{{high_price}}"cedis books</h2>
+
+{%elif student.how_many_books_to_buy == 'one'%}
+
+  <h2>Needs to buy "{{low_price}}"cedis books</h2>
+
+{%endif%}
+
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="button" class="btn btn-outline-primary"><input type="submit" name="submit" value="Save"></button>
+    </form>
+</hr> 
+<table class="table table-bordered border-primary">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Names</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Book</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for studentspay in student_payment%}
+    <tr>
+      <td>{{studentspay.student}}</td>
+      <td>{{studentspay.make_payment}}</td>
+      <td>{{studentspay.book_payment}}</td>
+      <td>{{studentspay.when_made}}</td>
+    </tr>
+    <tr>
+    {%endfor%}
+{%endblock content%}
