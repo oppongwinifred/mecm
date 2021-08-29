@@ -12,7 +12,7 @@ from django.contrib.auth.models import Group
 # Create your views here.
 
 
-@unauthenticated_user
+'''@unauthenticated_user
 def register_view(request):  
     form = CreateUserForm()
     if request.method == 'POST':
@@ -46,10 +46,10 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('login')'''
 
-@login_required(login_url='login')
-@admin_only
+#@login_required(login_url='login')
+#@admin_only
 def home_view(request):
     student_created = Student.objects.all()
     all_payment = Payment.objects.all()
@@ -63,8 +63,8 @@ def userPage(request):
     return render(request, 'user.html', context)
     
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+#@login_required(login_url='login')
+#@allowed_users(allowed_roles=['admin'])
 def adding_student_view(request):
     form = Add_Student_Form()
 
@@ -79,8 +79,8 @@ def adding_student_view(request):
     }
     return render(request, 'addingstudent.html', context) 
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+#@login_required(login_url='login')
+#@allowed_users(allowed_roles=['admin'])
 def updating_student_view(request, pk):
     student1 = Student.objects.get(id=pk)
     form = Add_Student_Form(instance=student1)
@@ -95,8 +95,8 @@ def updating_student_view(request, pk):
     }
     return render(request, 'addingstudent.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+#@login_required(login_url='login')
+#@allowed_users(allowed_roles=['admin'])
 def deleting_student_view(request, pk):
     student1 = Student.objects.get(id=pk)
     context = {'student_name':student1,}
@@ -105,8 +105,8 @@ def deleting_student_view(request, pk):
         return redirect('/')
     return render(request, 'delete.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+#@login_required(login_url='login')
+#@allowed_users(allowed_roles=['admin'])
 def student_payment_view(request, pk):
     high_price = 80
     low_price = 20
@@ -126,16 +126,16 @@ def student_payment_view(request, pk):
     'low_price':low_price,}
     return render(request, 'payment.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+#@login_required(login_url='login')
+#@allowed_users(allowed_roles=['admin'])
 def histories_view(request):
     histowy = Payment.objects.all()
     context = {'histowy':histowy,}
     return render(request, 'history.html', context)
 
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+#@login_required(login_url='login')
+#@allowed_users(allowed_roles=['admin'])
 def records_view(request):
     daily_money_record = Payment.objects.filter().values('when_made').order_by('when_made').annotate(sum=Sum('make_payment'))
     context = {'daily_money_record':daily_money_record}
